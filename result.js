@@ -440,13 +440,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             body { 
                                 margin: 0; 
                                 padding: 0; 
-                                background: #fff; 
+                                background: #0f0f0f; 
                                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-                                color: #0f0f0f;
+                                color: #fff;
                             }
                             .container {
-                                max-width: 1200px;
-                                margin: 0 auto;
+                                width: 100%;
+                                max-width: 100%;
+                                margin: 0;
                                 padding: 0;
                             }
                             .video-container { 
@@ -465,12 +466,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                             .video-info { 
                                 padding: 12px 16px;
-                                background: #fff;
+                                background: #0f0f0f;
                             }
                             .video-title { 
                                 font-size: 1.1rem; 
                                 margin-bottom: 8px;
-                                color: #0f0f0f;
+                                color: #fff;
                                 line-height: 1.4;
                                 font-weight: 500;
                             }
@@ -478,7 +479,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 display: flex;
                                 align-items: center;
                                 gap: 8px;
-                                color: #606060;
+                                color: #aaa;
                                 font-size: 0.9rem;
                                 margin-bottom: 12px;
                             }
@@ -487,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 gap: 8px; 
                                 margin-top: 12px;
                                 padding: 0 16px 16px;
-                                border-bottom: 1px solid #e5e5e5;
+                                border-bottom: 1px solid #272727;
                             }
                             .button { 
                                 padding: 10px 16px; 
@@ -504,23 +505,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 align-items: center;
                                 justify-content: center;
                                 gap: 6px;
+                                background: #272727;
+                                color: #fff;
                             }
                             .button .icon {
                                 font-size: 1.2rem;
                             }
-                            .view-content { 
-                                background: #f2f2f2; 
-                                color: #0f0f0f;
-                            }
-                            .view-content:hover {
-                                background: #e5e5e5;
-                            }
-                            .reserve { 
-                                background: #f2f2f2; 
-                                color: #0f0f0f;
-                            }
-                            .reserve:hover {
-                                background: #e5e5e5;
+                            .button:hover {
+                                background: #3f3f3f;
                             }
                             .content-modal {
                                 display: none;
@@ -529,12 +521,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 left: 0;
                                 width: 100%;
                                 height: 100%;
-                                background: rgba(0, 0, 0, 0.7);
+                                background: #0f0f0f;
                                 z-index: 1000;
                             }
                             .content-modal-content {
                                 position: relative;
-                                background: #fff;
+                                background: #0f0f0f;
                                 margin: 0;
                                 padding: 16px;
                                 width: 100%;
@@ -548,25 +540,25 @@ document.addEventListener('DOMContentLoaded', function() {
                                 align-items: center;
                                 justify-content: space-between;
                                 padding-bottom: 12px;
-                                border-bottom: 1px solid #e5e5e5;
+                                border-bottom: 1px solid #272727;
                                 margin-bottom: 16px;
                             }
                             .content-modal-close {
                                 font-size: 24px;
                                 font-weight: bold;
-                                color: #606060;
+                                color: #fff;
                                 cursor: pointer;
                                 padding: 8px;
                                 margin: -8px;
                             }
                             .content-modal-title {
                                 font-size: 1.1rem;
-                                color: #0f0f0f;
+                                color: #fff;
                                 margin-bottom: 12px;
                                 font-weight: 500;
                             }
                             .content-modal-description {
-                                color: #606060;
+                                color: #aaa;
                                 line-height: 1.5;
                                 white-space: pre-wrap;
                                 font-size: 0.9rem;
