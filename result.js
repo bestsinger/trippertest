@@ -437,32 +437,166 @@ document.addEventListener('DOMContentLoaded', function() {
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <title>영상 보기</title>
                         <style>
-                            body { margin: 0; padding: 20px; background: #fff; }
-                            .video-container { width: 100%; padding-bottom: 56.25%; position: relative; }
-                            iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-                            .video-info { margin-top: 20px; }
-                            .video-title { font-size: 1.2rem; margin-bottom: 10px; }
-                            .button-group { display: flex; gap: 10px; margin-top: 15px; }
-                            .button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; }
-                            .view-content { background: #4CAF50; color: white; }
-                            .reserve { background: #2563eb; color: white; }
+                            * { box-sizing: border-box; margin: 0; padding: 0; }
+                            body { 
+                                margin: 0; 
+                                padding: 0; 
+                                background: #fff; 
+                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                            }
+                            .container {
+                                max-width: 1200px;
+                                margin: 0 auto;
+                                padding: 20px;
+                            }
+                            .video-container { 
+                                width: 100%; 
+                                padding-bottom: 56.25%; 
+                                position: relative; 
+                                background: #000;
+                                border-radius: 8px;
+                                overflow: hidden;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            }
+                            iframe { 
+                                position: absolute; 
+                                top: 0; 
+                                left: 0; 
+                                width: 100%; 
+                                height: 100%; 
+                                border: none;
+                            }
+                            .video-info { 
+                                margin-top: 20px;
+                                padding: 15px;
+                                background: #fff;
+                                border-radius: 8px;
+                                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                            }
+                            .video-title { 
+                                font-size: 1.2rem; 
+                                margin-bottom: 15px;
+                                color: #333;
+                                line-height: 1.4;
+                            }
+                            .button-group { 
+                                display: flex; 
+                                gap: 10px; 
+                                margin-top: 15px;
+                                flex-wrap: wrap;
+                            }
+                            .button { 
+                                padding: 12px 24px; 
+                                border: none; 
+                                border-radius: 6px; 
+                                cursor: pointer;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                transition: all 0.3s ease;
+                                flex: 1;
+                                min-width: 120px;
+                                text-align: center;
+                            }
+                            .view-content { 
+                                background: #4CAF50; 
+                                color: white;
+                            }
+                            .view-content:hover {
+                                background: #45a049;
+                            }
+                            .reserve { 
+                                background: #2563eb; 
+                                color: white;
+                            }
+                            .reserve:hover {
+                                background: #1d4ed8;
+                            }
+                            .content-modal {
+                                display: none;
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(0, 0, 0, 0.7);
+                                z-index: 1000;
+                            }
+                            .content-modal-content {
+                                position: relative;
+                                background: #fff;
+                                margin: 5% auto;
+                                padding: 20px;
+                                width: 90%;
+                                max-width: 800px;
+                                max-height: 80vh;
+                                border-radius: 12px;
+                                overflow-y: auto;
+                            }
+                            .content-modal-close {
+                                position: absolute;
+                                right: 20px;
+                                top: 10px;
+                                font-size: 28px;
+                                font-weight: bold;
+                                color: #666;
+                                cursor: pointer;
+                            }
+                            .content-modal-title {
+                                font-size: 1.5rem;
+                                color: #333;
+                                margin-bottom: 1rem;
+                                padding-right: 30px;
+                            }
+                            .content-modal-description {
+                                color: #666;
+                                line-height: 1.6;
+                                white-space: pre-wrap;
+                            }
+                            @media (max-width: 768px) {
+                                .container {
+                                    padding: 10px;
+                                }
+                                .video-info {
+                                    padding: 10px;
+                                }
+                                .button {
+                                    padding: 10px 20px;
+                                    font-size: 0.9rem;
+                                }
+                                .content-modal-content {
+                                    margin: 10% auto;
+                                    width: 95%;
+                                    padding: 15px;
+                                }
+                            }
                         </style>
                     </head>
                     <body>
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-info">
-                            <h2 class="video-title">영상 제목 로딩 중...</h2>
-                            <div class="button-group">
-                                <button class="button view-content" onclick="viewContent()">내용 보기</button>
-                                <button class="button reserve" onclick="reserve()">예약하기</button>
+                        <div class="container">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-info">
+                                <h2 class="video-title">영상 제목 로딩 중...</h2>
+                                <div class="button-group">
+                                    <button class="button view-content" onclick="viewContent()">내용 보기</button>
+                                    <button class="button reserve" onclick="reserve()">예약하기</button>
+                                </div>
                             </div>
                         </div>
+
+                        <div id="contentModal" class="content-modal">
+                            <div class="content-modal-content">
+                                <span class="content-modal-close" onclick="closeContentModal()">&times;</span>
+                                <h2 id="contentModalTitle" class="content-modal-title">영상 제목</h2>
+                                <p id="contentModalDescription" class="content-modal-description">영상 설명</p>
+                            </div>
+                        </div>
+
                         <script>
                             // 영상 정보 가져오기
                             fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}')
@@ -479,15 +613,50 @@ document.addEventListener('DOMContentLoaded', function() {
                                     .then(response => response.json())
                                     .then(data => {
                                         if (data.items && data.items.length > 0) {
-                                            alert(data.items[0].snippet.description);
+                                            const videoInfo = data.items[0].snippet;
+                                            document.getElementById('contentModalTitle').textContent = videoInfo.title;
+                                            document.getElementById('contentModalDescription').textContent = videoInfo.description;
+                                            document.getElementById('contentModal').style.display = 'block';
                                         }
                                     });
+                            }
+
+                            // 모달 닫기 함수
+                            function closeContentModal() {
+                                document.getElementById('contentModal').style.display = 'none';
+                            }
+
+                            // 모달 외부 클릭 시 닫기
+                            window.onclick = function(event) {
+                                const modal = document.getElementById('contentModal');
+                                if (event.target === modal) {
+                                    modal.style.display = 'none';
+                                }
                             }
 
                             // 예약하기 함수
                             function reserve() {
                                 window.open('reserve.html?video_id=${videoId}', '_blank', 'width=800,height=600');
                             }
+
+                            // 반응형 처리
+                            function adjustVideoSize() {
+                                const container = document.querySelector('.container');
+                                const videoContainer = document.querySelector('.video-container');
+                                const windowWidth = window.innerWidth;
+                                
+                                if (windowWidth <= 768) {
+                                    container.style.padding = '10px';
+                                    videoContainer.style.borderRadius = '4px';
+                                } else {
+                                    container.style.padding = '20px';
+                                    videoContainer.style.borderRadius = '8px';
+                                }
+                            }
+
+                            // 초기 로드 및 리사이즈 시 크기 조정
+                            window.addEventListener('load', adjustVideoSize);
+                            window.addEventListener('resize', adjustVideoSize);
                         </script>
                     </body>
                     </html>
