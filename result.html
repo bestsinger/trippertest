@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripper - 검색 결과</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="result.css">
+</head>
+<body>
+    <div class="container">
+        <div class="result-box">
+            <div class="header">
+                <h1>Tripper</h1>
+                <a href="https://youtu.be/DEuZrozA4U4?si=3T089v8IwoQXzf0R" class="back-button">← 검색으로 돌아가기</a>
+            </div>
+            
+            <div class="search-result">
+                <h2 id="searchQuery"></h2>
+                <div class="video-container">
+                    
+                    <iframe id="youtubeVideo" 
+                            width="100%" 
+                            height="500" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            src="about:blank">
+                    </iframe>
+                </div>
+                <div class="hotel-info">
+                    <h3>숙소 정보</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <img src="https://img.youtube.com/vi/HBPYv7zgyCg/maxresdefault.jpg" alt="호텔 이미지">
+                            <div class="info-content">
+                                <h4>영상 제목 로딩 중...</h4>
+                                <p>부산숙소</p>
+                                <p class="price">₩150,000 / 박</p>
+                                <button class="watch-video" data-video-id="HBPYv7zgyCg">영상 보기</button>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <img src="https://img.youtube.com/vi/EWE1_J3ducI/maxresdefault.jpg" alt="호텔 이미지">
+                            <div class="info-content">
+                                <h4>영상 제목 로딩 중...</h4>
+                                <p>부산숙소</p>
+                                <p class="price">₩120,000 / 박</p>
+                                <button class="watch-video" data-video-id="EWE1_J3ducI">영상 보기</button>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="호텔 이미지">
+                            <div class="info-content">
+                                <h4>영상 제목 로딩 중...</h4>
+                                <p>부산숙소</p>
+                                <p class="price">₩200,000 / 박</p>
+                                <button class="watch-video" data-video-id="FyKU_s0gcfI">영상 보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비디오 모달 -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-video-container">
+                <iframe id="modalVideo" 
+                        width="100%" 
+                        height="500" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="modal-info">
+                <h3 id="modalTitle">영상 제목</h3>
+                <div class="description-container">
+                    <p id="modalDescription" class="description-text">영상 설명</p>
+                    <button id="readMoreBtn" class="read-more-btn">더보기</button>
+                </div>
+                <div class="modal-actions">
+                    <button id="reserveButton" class="reserve-button">예약하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="result.js"></script>
+</body>
+</html> 
