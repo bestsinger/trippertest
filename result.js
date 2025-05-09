@@ -55,29 +55,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('videoModal');
     const modalVideo = document.getElementById('modalVideo');
     const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const readMoreBtn = document.getElementById('readMoreBtn');
     const reserveButton = document.getElementById('reserveButton');
     const closeModal = document.querySelector('.close-modal');
     const watchButtons = document.querySelectorAll('.watch-video');
+    let currentVideoDescription = ''; // 현재 영상의 설명을 저장할 변수
 
-    // 더보기 버튼 클릭 이벤트
-    readMoreBtn.addEventListener('click', () => {
-        const container = modalDescription.parentElement;
-        if (container.scrollTop === 0) {
-            // 스크롤을 맨 아래로
-            container.scrollTo({
-                top: container.scrollHeight,
-                behavior: 'smooth'
-            });
-            readMoreBtn.textContent = '맨 위로';
-        } else {
-            // 스크롤을 맨 위로
-            container.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            readMoreBtn.textContent = '더보기';
+    // 내용 보기 모달 관련 요소
+    const contentModal = document.getElementById('contentModal');
+    const contentModalTitle = document.getElementById('contentModalTitle');
+    const contentModalDescription = document.getElementById('contentModalDescription');
+    const contentModalClose = document.querySelector('.content-modal-close');
+    const viewContentBtn = document.getElementById('viewContentBtn');
+
+    // 내용 보기 버튼 클릭 이벤트
+    viewContentBtn.addEventListener('click', () => {
+        contentModalTitle.textContent = modalTitle.textContent;
+        contentModalDescription.textContent = currentVideoDescription;
+        contentModal.style.display = 'block';
+    });
+
+    // 내용 보기 모달 닫기
+    contentModalClose.addEventListener('click', () => {
+        contentModal.style.display = 'none';
+    });
+
+    // 내용 보기 모달 외부 클릭 시 닫기
+    window.addEventListener('click', (event) => {
+        if (event.target === contentModal) {
+            contentModal.style.display = 'none';
         }
     });
 
@@ -94,14 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (data.items && data.items.length > 0) {
                         const videoInfo = data.items[0].snippet;
                         modalTitle.textContent = videoInfo.title;
-                        modalDescription.textContent = videoInfo.description;
-                        
-                        // 설명이 200px를 초과하는 경우 더보기 버튼 표시
-                        if (modalDescription.scrollHeight > 200) {
-                            readMoreBtn.classList.add('visible');
-                        } else {
-                            readMoreBtn.classList.remove('visible');
-                        }
+                        currentVideoDescription = videoInfo.description; // 설명 저장
                         
                         // 예약 버튼에 영상 ID 저장
                         reserveButton.setAttribute('data-video-id', videoId);
@@ -118,17 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 예약 버튼 클릭 이벤트
     reserveButton.addEventListener('click', () => {
         const videoId = reserveButton.getAttribute('data-video-id');
-        window.location.href = `reserve.html?video_id=${videoId}`;
+        window.open(`reserve.html?video_id=${videoId}`, '_blank', 'width=800,height=600');
     });
 
     // 모달 닫기 버튼 클릭 이벤트
     closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
         modalVideo.src = 'about:blank';
-        // 모달이 닫힐 때 스크롤을 맨 위로
-        const container = modalDescription.parentElement;
-        container.scrollTop = 0;
-        readMoreBtn.textContent = '더보기';
     });
 
     // 모달 외부 클릭 시 닫기
@@ -136,10 +130,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modal) {
             modal.style.display = 'none';
             modalVideo.src = 'about:blank';
-            // 모달이 닫힐 때 스크롤을 맨 위로
-            const container = modalDescription.parentElement;
-            container.scrollTop = 0;
-            readMoreBtn.textContent = '더보기';
         }
     });
+
+    // 모바일 대응: 화면 크기 변경 시 비디오 높이 조정
+    function adjustVideoHeight() {
+        const isMobile = window.innerWidth <= 768;
+        const videoHeight = isMobile ? 300 : 500;
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.style.height = `${videoHeight}px`;
+        });
+    }
+
+    // 초기 로드 시와 화면 크기 변경 시 비디오 높이 조정
+    adjustVideoHeight();
+    window.addEventListener('resize', adjustVideoHeight);
 }); 
