@@ -427,7 +427,6 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const videoId = this.getAttribute('data-video-id');
             if (videoId) {
-                // 새 창에서 영상 재생
                 const videoWindow = window.open('', '_blank', 'width=800,height=600');
                 videoWindow.document.write(`
                     <!DOCTYPE html>
@@ -443,20 +442,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 padding: 0; 
                                 background: #fff; 
                                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                                color: #0f0f0f;
                             }
                             .container {
                                 max-width: 1200px;
                                 margin: 0 auto;
-                                padding: 20px;
+                                padding: 0;
                             }
                             .video-container { 
                                 width: 100%; 
                                 padding-bottom: 56.25%; 
                                 position: relative; 
                                 background: #000;
-                                border-radius: 8px;
-                                overflow: hidden;
-                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                             }
                             iframe { 
                                 position: absolute; 
@@ -467,49 +464,63 @@ document.addEventListener('DOMContentLoaded', function() {
                                 border: none;
                             }
                             .video-info { 
-                                margin-top: 20px;
-                                padding: 15px;
+                                padding: 12px 16px;
                                 background: #fff;
-                                border-radius: 8px;
-                                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                             }
                             .video-title { 
-                                font-size: 1.2rem; 
-                                margin-bottom: 15px;
-                                color: #333;
+                                font-size: 1.1rem; 
+                                margin-bottom: 8px;
+                                color: #0f0f0f;
                                 line-height: 1.4;
+                                font-weight: 500;
+                            }
+                            .video-stats {
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                color: #606060;
+                                font-size: 0.9rem;
+                                margin-bottom: 12px;
                             }
                             .button-group { 
                                 display: flex; 
-                                gap: 10px; 
-                                margin-top: 15px;
-                                flex-wrap: wrap;
+                                gap: 8px; 
+                                margin-top: 12px;
+                                padding: 0 16px 16px;
+                                border-bottom: 1px solid #e5e5e5;
                             }
                             .button { 
-                                padding: 12px 24px; 
+                                padding: 10px 16px; 
                                 border: none; 
-                                border-radius: 6px; 
+                                border-radius: 18px; 
                                 cursor: pointer;
-                                font-size: 1rem;
+                                font-size: 0.9rem;
                                 font-weight: 500;
-                                transition: all 0.3s ease;
+                                transition: all 0.2s ease;
                                 flex: 1;
-                                min-width: 120px;
+                                min-width: 100px;
                                 text-align: center;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 6px;
+                            }
+                            .button .icon {
+                                font-size: 1.2rem;
                             }
                             .view-content { 
-                                background: #4CAF50; 
-                                color: white;
+                                background: #f2f2f2; 
+                                color: #0f0f0f;
                             }
                             .view-content:hover {
-                                background: #45a049;
+                                background: #e5e5e5;
                             }
                             .reserve { 
-                                background: #2563eb; 
-                                color: white;
+                                background: #f2f2f2; 
+                                color: #0f0f0f;
                             }
                             .reserve:hover {
-                                background: #1d4ed8;
+                                background: #e5e5e5;
                             }
                             .content-modal {
                                 display: none;
@@ -524,49 +535,58 @@ document.addEventListener('DOMContentLoaded', function() {
                             .content-modal-content {
                                 position: relative;
                                 background: #fff;
-                                margin: 5% auto;
-                                padding: 20px;
-                                width: 90%;
-                                max-width: 800px;
-                                max-height: 80vh;
-                                border-radius: 12px;
+                                margin: 0;
+                                padding: 16px;
+                                width: 100%;
+                                height: 100%;
                                 overflow-y: auto;
+                                display: flex;
+                                flex-direction: column;
+                            }
+                            .content-modal-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding-bottom: 12px;
+                                border-bottom: 1px solid #e5e5e5;
+                                margin-bottom: 16px;
                             }
                             .content-modal-close {
-                                position: absolute;
-                                right: 20px;
-                                top: 10px;
-                                font-size: 28px;
+                                font-size: 24px;
                                 font-weight: bold;
-                                color: #666;
+                                color: #606060;
                                 cursor: pointer;
+                                padding: 8px;
+                                margin: -8px;
                             }
                             .content-modal-title {
-                                font-size: 1.5rem;
-                                color: #333;
-                                margin-bottom: 1rem;
-                                padding-right: 30px;
+                                font-size: 1.1rem;
+                                color: #0f0f0f;
+                                margin-bottom: 12px;
+                                font-weight: 500;
                             }
                             .content-modal-description {
-                                color: #666;
-                                line-height: 1.6;
+                                color: #606060;
+                                line-height: 1.5;
                                 white-space: pre-wrap;
+                                font-size: 0.9rem;
                             }
                             @media (max-width: 768px) {
                                 .container {
-                                    padding: 10px;
+                                    padding: 0;
                                 }
                                 .video-info {
-                                    padding: 10px;
+                                    padding: 12px 16px;
                                 }
                                 .button {
-                                    padding: 10px 20px;
-                                    font-size: 0.9rem;
+                                    padding: 8px 12px;
+                                    font-size: 0.85rem;
+                                }
+                                .button .icon {
+                                    font-size: 1.1rem;
                                 }
                                 .content-modal-content {
-                                    margin: 10% auto;
-                                    width: 95%;
-                                    padding: 15px;
+                                    padding: 12px;
                                 }
                             }
                         </style>
@@ -582,17 +602,29 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="video-info">
                                 <h2 class="video-title">영상 제목 로딩 중...</h2>
+                                <div class="video-stats">
+                                    <span class="views">조회수 0회</span>
+                                    <span class="date">2024년 3월 21일</span>
+                                </div>
                                 <div class="button-group">
-                                    <button class="button view-content" onclick="viewContent()">내용 보기</button>
-                                    <button class="button reserve" onclick="reserve()">예약하기</button>
+                                    <button class="button view-content" onclick="viewContent()">
+                                        <span class="icon">📝</span>
+                                        <span>내용 보기</span>
+                                    </button>
+                                    <button class="button reserve" onclick="reserve()">
+                                        <span class="icon">🏨</span>
+                                        <span>예약하기</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
                         <div id="contentModal" class="content-modal">
                             <div class="content-modal-content">
-                                <span class="content-modal-close" onclick="closeContentModal()">&times;</span>
-                                <h2 id="contentModalTitle" class="content-modal-title">영상 제목</h2>
+                                <div class="content-modal-header">
+                                    <h2 id="contentModalTitle" class="content-modal-title">영상 제목</h2>
+                                    <span class="content-modal-close" onclick="closeContentModal()">&times;</span>
+                                </div>
                                 <p id="contentModalDescription" class="content-modal-description">영상 설명</p>
                             </div>
                         </div>
@@ -603,7 +635,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 .then(response => response.json())
                                 .then(data => {
                                     if (data.items && data.items.length > 0) {
-                                        document.querySelector('.video-title').textContent = data.items[0].snippet.title;
+                                        const videoInfo = data.items[0].snippet;
+                                        document.querySelector('.video-title').textContent = videoInfo.title;
+                                        document.querySelector('.video-stats .date').textContent = 
+                                            new Date(videoInfo.publishedAt).toLocaleDateString('ko-KR', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric'
+                                            });
                                     }
                                 });
 
@@ -617,6 +656,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             document.getElementById('contentModalTitle').textContent = videoInfo.title;
                                             document.getElementById('contentModalDescription').textContent = videoInfo.description;
                                             document.getElementById('contentModal').style.display = 'block';
+                                            document.body.style.overflow = 'hidden';
                                         }
                                     });
                             }
@@ -624,6 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             // 모달 닫기 함수
                             function closeContentModal() {
                                 document.getElementById('contentModal').style.display = 'none';
+                                document.body.style.overflow = 'auto';
                             }
 
                             // 모달 외부 클릭 시 닫기
@@ -631,6 +672,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 const modal = document.getElementById('contentModal');
                                 if (event.target === modal) {
                                     modal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
                                 }
                             }
 
@@ -646,11 +688,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 const windowWidth = window.innerWidth;
                                 
                                 if (windowWidth <= 768) {
-                                    container.style.padding = '10px';
-                                    videoContainer.style.borderRadius = '4px';
+                                    container.style.padding = '0';
+                                    videoContainer.style.borderRadius = '0';
                                 } else {
-                                    container.style.padding = '20px';
-                                    videoContainer.style.borderRadius = '8px';
+                                    container.style.padding = '0';
+                                    videoContainer.style.borderRadius = '0';
                                 }
                             }
 
