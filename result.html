@@ -21,145 +21,93 @@
 </head>
 <body>
     <div class="container">
-        <div class="result-box">
-            <div class="header">
-                <div class="header-left">
-                    <h1>Tripper</h1>
-                </div>
-                <div class="header-right">
-                    <a href="index.html" class="back-button">← 검색으로 돌아가기</a>
-                </div>
+        <header>
+            <h1>Tripper</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="숙소를 검색하세요">
+                <button id="searchButton">검색</button>
             </div>
-            
-            <div class="search-result">
-                <h2 id="searchQuery"></h2>
-                <div class="main-content">
-                    <div class="video-section">
-                        <div class="video-container">
-                            <div class="video-overlay">
-                                <span>베스트 숙소</span>
-                            </div>
-                            <div class="thumbnail-container" data-video-id="FyKU_s0gcfI">
-                                <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="베스트 숙소 썸네일" class="video-thumbnail">
-                                <div class="play-button">
-                                    <span class="play-icon">▶️</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <h3 class="video-title">영상 제목</h3>
-                            <div class="video-stats">
-                                <span class="views">조회수 0회</span>
-                                <span class="date">2024년 3월 21일</span>
-                            </div>
-                            <div class="video-actions">
-                                <button class="action-button like" data-liked="false">
-                                    <span class="icon">❤️</span>
-                                    <span class="count">0</span>
-                                </button>
-                                <button class="action-button share">
-                                    <span class="icon">↗️</span>
-                                    <span>공유</span>
-                                </button>
-                                <button class="action-button view-content">
-                                    <span class="icon">📝</span>
-                                    <span>내용 보기</span>
-                                </button>
-                                <button class="action-button reserve" data-video-id="FyKU_s0gcfI">
-                                    <span class="icon">🏨</span>
-                                    <span>예약하기</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recommendations">
-                        <h3>추천 숙소</h3>
-                        <div class="info-grid">
-                            <div class="info-card">
-                                <div class="thumbnail" data-video-id="HBPYv7zgyCg">
-                                    <img src="https://img.youtube.com/vi/HBPYv7zgyCg/maxresdefault.jpg" alt="호텔 이미지">
-                                    <span class="duration">10:30</span>
-                                    <div class="play-button">
-                                        <span class="play-icon">▶️</span>
-                                    </div>
-                                </div>
-                                <div class="info-content">
-                                    <h4>영상 제목 로딩 중...</h4>
-                                    <p class="channel">부산숙소</p>
-                                    <p class="views">조회수 0회</p>
-                                    <p class="price">₩150,000 / 박</p>
-                                    <button class="watch-video" data-video-id="HBPYv7zgyCg">영상 보기</button>
-                                </div>
-                            </div>
-                            <div class="info-card">
-                                <div class="thumbnail" data-video-id="EWE1_J3ducI">
-                                    <img src="https://img.youtube.com/vi/EWE1_J3ducI/maxresdefault.jpg" alt="호텔 이미지">
-                                    <span class="duration">8:45</span>
-                                    <div class="play-button">
-                                        <span class="play-icon">▶️</span>
-                                    </div>
-                                </div>
-                                <div class="info-content">
-                                    <h4>영상 제목 로딩 중...</h4>
-                                    <p class="channel">부산숙소</p>
-                                    <p class="views">조회수 0회</p>
-                                    <p class="price">₩120,000 / 박</p>
-                                    <button class="watch-video" data-video-id="EWE1_J3ducI">영상 보기</button>
-                                </div>
-                            </div>
-                            <div class="info-card">
-                                <div class="thumbnail" data-video-id="FyKU_s0gcfI">
-                                    <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="호텔 이미지">
-                                    <span class="duration">12:15</span>
-                                    <div class="play-button">
-                                        <span class="play-icon">▶️</span>
-                                    </div>
-                                </div>
-                                <div class="info-content">
-                                    <h4>영상 제목 로딩 중...</h4>
-                                    <p class="channel">부산숙소</p>
-                                    <p class="views">조회수 0회</p>
-                                    <p class="price">₩200,000 / 박</p>
-                                    <button class="watch-video" data-video-id="FyKU_s0gcfI">영상 보기</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </header>
 
-    <!-- 베스트 숙소 비디오 모달 -->
-    <div id="bestVideoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-video-container">
-                <iframe id="bestVideoFrame" 
-                        width="100%" 
-                        height="100%" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen
-                        loading="lazy"
-                        referrerpolicy="origin">
-                </iframe>
-            </div>
-            <div class="modal-info">
-                <h3 id="bestVideoTitle">영상 제목</h3>
-                <div class="modal-actions">
-                    <button id="bestViewContentBtn" class="view-content-btn">내용 보기</button>
-                    <button id="bestReserveButton" class="reserve-button">예약하기</button>
+        <main class="main-content">
+            <!-- 베스트 숙소 영상 섹션 -->
+            <section class="video-section">
+                <h2>베스트 숙소</h2>
+                <div class="thumbnail-container" data-video-id="FyKU_s0gcfI">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="베스트 숙소 영상">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">베스트 숙소 영상</h3>
+                        <div class="video-stats">
+                            <span class="date">2024년 3월 21일</span>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="action-button view-content">
+                                <span class="icon">📝</span>
+                                <span>내용 보기</span>
+                            </button>
+                            <button class="action-button reserve" data-video-id="FyKU_s0gcfI">
+                                <span class="icon">🏨</span>
+                                <span>예약하기</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            <!-- 추천 숙소 섹션 -->
+            <section class="recommendations">
+                <h2>추천 숙소</h2>
+                <div class="info-grid">
+                    <!-- 추천 숙소 카드 1 -->
+                    <div class="info-card">
+                        <div class="thumbnail" data-video-id="HBPYv7zgyCg">
+                            <img src="https://img.youtube.com/vi/HBPYv7zgyCg/maxresdefault.jpg" alt="추천 숙소 1">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>추천 숙소 1</h4>
+                            <button class="watch-video" data-video-id="HBPYv7zgyCg">영상 보기</button>
+                        </div>
+                    </div>
+
+                    <!-- 추천 숙소 카드 2 -->
+                    <div class="info-card">
+                        <div class="thumbnail" data-video-id="EWE1_J3ducI">
+                            <img src="https://img.youtube.com/vi/EWE1_J3ducI/maxresdefault.jpg" alt="추천 숙소 2">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>추천 숙소 2</h4>
+                            <button class="watch-video" data-video-id="EWE1_J3ducI">영상 보기</button>
+                        </div>
+                    </div>
+
+                    <!-- 추천 숙소 카드 3 -->
+                    <div class="info-card">
+                        <div class="thumbnail" data-video-id="FyKU_s0gcfI">
+                            <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="추천 숙소 3">
+                            <div class="play-button">▶</div>
+                        </div>
+                        <div class="card-content">
+                            <h4>추천 숙소 3</h4>
+                            <button class="watch-video" data-video-id="FyKU_s0gcfI">영상 보기</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <!-- 내용 보기 모달 -->
     <div id="contentModal" class="content-modal">
         <div class="content-modal-content">
-            <span class="content-modal-close">&times;</span>
-            <h2 id="contentModalTitle" class="content-modal-title">영상 제목</h2>
+            <div class="content-modal-header">
+                <h2 id="contentModalTitle" class="content-modal-title">영상 제목</h2>
+                <span class="content-modal-close">&times;</span>
+            </div>
             <p id="contentModalDescription" class="content-modal-description">영상 설명</p>
         </div>
     </div>

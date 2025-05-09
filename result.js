@@ -699,4 +699,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // 모바일 레이아웃 조정
+    function adjustMobileLayout() {
+        const windowWidth = window.innerWidth;
+        const mainContent = document.querySelector('.main-content');
+        const videoSection = document.querySelector('.video-section');
+        const recommendations = document.querySelector('.recommendations');
+        
+        if (windowWidth <= 768) {
+            // 모바일 레이아웃
+            mainContent.style.flexDirection = 'column';
+            videoSection.style.width = '100%';
+            recommendations.style.width = '100%';
+            
+            // 베스트 숙소 영상 섹션 스타일
+            videoSection.style.marginBottom = '20px';
+            
+            // 추천 숙소 그리드 스타일
+            const infoGrid = document.querySelector('.info-grid');
+            if (infoGrid) {
+                infoGrid.style.display = 'grid';
+                infoGrid.style.gridTemplateColumns = '1fr';
+                infoGrid.style.gap = '16px';
+            }
+            
+            // 썸네일 스타일
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumbnail => {
+                thumbnail.style.width = '100%';
+                thumbnail.style.height = '200px';
+            });
+        } else {
+            // 데스크톱 레이아웃
+            mainContent.style.flexDirection = 'row';
+            videoSection.style.width = '70%';
+            recommendations.style.width = '30%';
+            
+            // 추천 숙소 그리드 스타일
+            const infoGrid = document.querySelector('.info-grid');
+            if (infoGrid) {
+                infoGrid.style.display = 'flex';
+                infoGrid.style.flexDirection = 'column';
+            }
+            
+            // 썸네일 스타일
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumbnail => {
+                thumbnail.style.width = '168px';
+                thumbnail.style.height = '94px';
+            });
+        }
+    }
+
+    // 초기 로드 및 리사이즈 시 레이아웃 조정
+    window.addEventListener('load', adjustMobileLayout);
+    window.addEventListener('resize', adjustMobileLayout);
 }); 
