@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 예약 - Tripper</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .reservation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .submit-button {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+        }
+        .submit-button:hover {
+            opacity: 0.9;
+        }
+        .video-info {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="reservation-container">
+        <div class="video-info">
+            <h2 id="video-title"></h2>
+            <p id="video-description"></p>
+        </div>
+        <form id="reservation-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">전화번호</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="date">여행 날짜</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="people">인원 수</label>
+                <select id="people" required>
+                    <option value="">선택하세요</option>
+                    <option value="1">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5+">5명 이상</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">추가 요청사항</label>
+                <textarea id="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-button">예약하기</button>
+        </form>
+    </div>
+
+    <script>
+        // URL에서 비디오 ID 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('v');
+
+        // 비디오 정보 매핑
+        const videoInfo = {
+            'EWE1_J3ducI': {
+                title: '제주도 여행 vlog',
+                description: '제주도 여행 예약'
+            },
+            'AXFE68huESY': {
+                title: '부산 여행 가이드',
+                description: '부산 여행 예약'
+            },
+            'DLHA3Qy2IyY': {
+                title: '서울 야경 투어',
+                description: '서울 야경 투어 예약'
+            },
+            'rw5hWbRzUAo': {
+                title: '강원도 설악산 여행',
+                description: '설악산 여행 예약'
+            },
+            'FyKU_s0gcfI': {
+                title: '제주도 맛집 투어',
+                description: '제주도 맛집 투어 예약'
+            }
+        };
+
+        // 비디오 정보 표시
+        const info = videoInfo[videoId];
+        if (info) {
+            document.getElementById('video-title').textContent = info.title;
+            document.getElementById('video-description').textContent = info.description;
+        }
+
+        // 폼 제출 처리
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                people: document.getElementById('people').value,
+                message: document.getElementById('message').value,
+                videoId: videoId
+            };
+
+            // 여기에 실제 예약 처리 로직 추가
+            alert('예약이 완료되었습니다! 확인 이메일을 발송했습니다.');
+            window.close();
+        }
+    </script>
+</body>
+</html> 

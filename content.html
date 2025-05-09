@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영상 내용 - Tripper</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .video-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .video-description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .video-info {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .info-item {
+            margin-bottom: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="video-title" id="video-title"></div>
+        <div class="video-description" id="video-description"></div>
+        <div class="video-info">
+            <div class="info-item">채널: <span id="channel-name"></span></div>
+            <div class="info-item">조회수: <span id="view-count"></span></div>
+            <div class="info-item">업로드 날짜: <span id="upload-date"></span></div>
+        </div>
+    </div>
+
+    <script>
+        // URL에서 비디오 ID 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('v');
+
+        // 비디오 정보 매핑
+        const videoInfo = {
+            'EWE1_J3ducI': {
+                title: '제주도 여행 vlog',
+                description: '제주도의 아름다운 풍경과 맛집을 소개하는 여행 영상입니다. 한라산 등반, 해변 산책, 현지 맛집 탐방 등 다양한 활동을 담았습니다.',
+                channel: '여행러',
+                views: '1.2만회',
+                uploadDate: '2024년 3월 15일'
+            },
+            'AXFE68huESY': {
+                title: '부산 여행 가이드',
+                description: '부산의 대표적인 관광지와 숨은 명소를 소개합니다. 해운대, 광안대교, 자갈치시장 등 부산의 매력을 만나보세요.',
+                channel: '여행의 신',
+                views: '2.5만회',
+                uploadDate: '2024년 3월 10일'
+            },
+            'DLHA3Qy2IyY': {
+                title: '서울 야경 투어',
+                description: '서울의 아름다운 야경을 소개합니다. 남산타워, 한강, 동대문 등 서울의 밤을 만끽할 수 있는 장소들을 담았습니다.',
+                channel: '도시탐험가',
+                views: '3.1만회',
+                uploadDate: '2024년 3월 5일'
+            },
+            'rw5hWbRzUAo': {
+                title: '강원도 설악산 여행',
+                description: '설악산의 아름다운 자연 풍경과 등산 코스를 소개합니다. 가을 단풍과 겨울 설경까지, 사계절 설악산의 매력을 만나보세요.',
+                channel: '자연탐험대',
+                views: '1.8만회',
+                uploadDate: '2024년 3월 12일'
+            },
+            'FyKU_s0gcfI': {
+                title: '제주도 맛집 투어',
+                description: '제주도의 대표적인 맛집들을 소개합니다. 흑돼지, 해산물, 카페 등 제주도만의 특별한 맛을 만나보세요.',
+                channel: '맛있는 여행',
+                views: '4.2만회',
+                uploadDate: '2024년 3월 8일'
+            }
+        };
+
+        // 비디오 정보 표시
+        const info = videoInfo[videoId];
+        if (info) {
+            document.getElementById('video-title').textContent = info.title;
+            document.getElementById('video-description').textContent = info.description;
+            document.getElementById('channel-name').textContent = info.channel;
+            document.getElementById('view-count').textContent = info.views;
+            document.getElementById('upload-date').textContent = info.uploadDate;
+        }
+    </script>
+</body>
+</html> 

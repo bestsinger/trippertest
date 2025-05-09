@@ -3,20 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tripper</title>
+    <title>Tripper - 영상 공유 플랫폼</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="search-box">
-            <h1>Tripper</h1>
-            <form action="result.html" method="GET">
-                <div class="search-container">
-                    <input type="text" name="query" placeholder="어떤 숙소를 원하시나요?" required>
-                    <button type="submit">검색</button>
-                </div>
-            </form>
+    <header>
+        <div class="header-left">
+            <i class="fas fa-bars"></i>
+            <div class="logo">
+                <h1>Tripper</h1>
+            </div>
         </div>
-    </div>
+        <div class="search-bar">
+            <input type="text" placeholder="검색">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="header-right">
+            <i class="fas fa-video"></i>
+            <i class="fas fa-bell"></i>
+            <div class="profile">
+                <img src="https://via.placeholder.com/32" alt="프로필">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <div class="sidebar-item active">
+                <i class="fas fa-home"></i>
+                <span>홈</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-fire"></i>
+                <span>인기</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-history"></i>
+                <span>시청 기록</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-heart"></i>
+                <span>좋아요 표시한 동영상</span>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/EWE1_J3ducI/maxresdefault.jpg" alt="썸네일">
+                        <span class="duration">10:30</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>제주도 여행 vlog</h3>
+                        <p class="channel">여행러</p>
+                        <p class="views">조회수 1.2만회 • 3일 전</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/AXFE68huESY/maxresdefault.jpg" alt="썸네일">
+                        <span class="duration">15:45</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>부산 여행 가이드</h3>
+                        <p class="channel">여행의 신</p>
+                        <p class="views">조회수 2.5만회 • 1주일 전</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/DLHA3Qy2IyY/maxresdefault.jpg" alt="썸네일">
+                        <span class="duration">8:20</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>서울 야경 투어</h3>
+                        <p class="channel">도시탐험가</p>
+                        <p class="views">조회수 3.1만회 • 2주일 전</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/rw5hWbRzUAo/maxresdefault.jpg" alt="썸네일">
+                        <span class="duration">12:15</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>강원도 설악산 여행</h3>
+                        <p class="channel">자연탐험대</p>
+                        <p class="views">조회수 1.8만회 • 5일 전</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/FyKU_s0gcfI/maxresdefault.jpg" alt="썸네일">
+                        <span class="duration">9:40</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>제주도 맛집 투어</h3>
+                        <p class="channel">맛있는 여행</p>
+                        <p class="views">조회수 4.2만회 • 1주일 전</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html> 
